@@ -44,9 +44,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DesignDocument.cs" />
+    <Compile Include="DesignDocumentConvert.cs" />
     <Compile Include="DesignDocumentExtensions.cs" />
     <Compile Include="DesignDocumentSerializerSettings.cs" />
-    <Compile Include="DesignDocumentView.cs" />
+    <Compile Include="MapReduceSpec.cs" />
     <Compile Include="DesignDocumentViews.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewIdentifier.cs" />

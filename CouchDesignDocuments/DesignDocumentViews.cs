@@ -16,9 +16,9 @@ namespace TheDmi.CouchDesignDocuments
             _designDocumentType = designDocument.GetType();
         }
 
-        protected DesignDocumentView View([CallerMemberName] string mapFunctionName = null)
+        protected MapReduceSpec View([CallerMemberName] string mapFunctionName = null)
         {
-            return new DesignDocumentView(
+            return new MapReduceSpec(
                 new Lazy<string>(() => LoadMapFunction(mapFunctionName)),
                 new Lazy<string>(() => LoadReduceFunction(mapFunctionName)));
         }
@@ -31,10 +31,7 @@ namespace TheDmi.CouchDesignDocuments
 
             if (content == null)
             {
-                throw new InvalidOperationException(
-                    string.Format(
-                        "The resource for the map function with name '{0}' could not be found in the assembly resources. Did you set the 'Build Action' property to 'Embedded Resource'?",
-                        jsName));
+                throw new InvalidOperationException(JsFileNotFoundErrorMessage(jsName));
             }
 
             return content;
@@ -53,15 +50,15 @@ namespace TheDmi.CouchDesignDocuments
 
         private string FindResource(string jsName)
         {
-            var viewResources = GetAllDesignDocumentResourceNames();
+            var viewResources = GetAllViewResourceNames();
             return viewResources.SingleOrDefault(n => n.ToLower().Contains(jsName.ToLower()));
         }
 
-        private IEnumerable<string> GetAllDesignDocumentResourceNames()
+        private IEnumerable<string> GetAllViewResourceNames()
         {
             var resourceNames =
                 _designDocumentType.Assembly.GetManifestResourceNames()
-                    .Where(n => n.StartsWith(_designDocumentType.Namespace + ".Design"));
+                    .Where(n => n.StartsWith(_designDocumentType.Namespace));
 
             return resourceNames.Where(n => n.Contains("Views"));
         }
@@ -73,6 +70,15 @@ namespace TheDmi.CouchDesignDocuments
             {
                 return reader.ReadToEnd();
             }
+        }
+
+        private string JsFileNotFoundErrorMessage(string jsName)
+        {
+            return
+                string.Format(
+                    "The resource for the map function with name '{0}' could not be found in the assembly resources. "
+                    + "Did you set the 'Build Action' property to 'Embedded Resource'? \n\nFound resources for {1}: {2}",
+                    jsName, _designDocumentType.Name, GetAllViewResourceNames().Aggregate("", (accu, s) => accu + "\n" + s));
         }
     }
 }
