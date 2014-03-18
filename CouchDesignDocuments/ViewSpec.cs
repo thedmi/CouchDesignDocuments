@@ -4,13 +4,13 @@ namespace TheDmi.CouchDesignDocuments
 
     using Newtonsoft.Json;
 
-    public class MapReduceSpec
+    public class ViewSpec
     {
         private readonly Lazy<string> _mapFunction;
 
         private readonly Lazy<string> _reduceFunction; // May evaluate to null
 
-        public MapReduceSpec(Lazy<string> mapFunction, Lazy<string> reduceFunction)
+        internal ViewSpec(Lazy<string> mapFunction, Lazy<string> reduceFunction)
         {
             _mapFunction = mapFunction;
             _reduceFunction = reduceFunction;

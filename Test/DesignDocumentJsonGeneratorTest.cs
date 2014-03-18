@@ -2,6 +2,7 @@
 {
     using System.Diagnostics;
 
+    using TheDmi.CouchDesignDocuments.Serialization;
     using TheDmi.CouchDesignDocuments.Test.Example;
 
     using Xunit;

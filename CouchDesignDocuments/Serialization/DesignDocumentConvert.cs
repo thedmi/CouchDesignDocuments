@@ -1,4 +1,4 @@
-﻿namespace TheDmi.CouchDesignDocuments
+﻿namespace TheDmi.CouchDesignDocuments.Serialization
 {
     using Newtonsoft.Json;
 

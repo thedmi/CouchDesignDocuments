@@ -44,12 +44,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DesignDocument.cs" />
-    <Compile Include="DesignDocumentConvert.cs" />
+    <Compile Include="Serialization\DesignDocumentConvert.cs" />
     <Compile Include="DesignDocumentExtensions.cs" />
-    <Compile Include="DesignDocumentSerializerSettings.cs" />
+    <Compile Include="AbstractSection.cs" />
+    <Compile Include="Serialization\DesignDocumentSerializerSettings.cs" />
+    <Compile Include="Serialization\FunctionSpecConverter.cs" />
+    <Compile Include="ShowsSection.cs" />
     <Compile Include="IDesignDocument.cs" />
-    <Compile Include="MapReduceSpec.cs" />
-    <Compile Include="DesignDocumentViews.cs" />
+    <Compile Include="FunctionSpec.cs" />
+    <Compile Include="ViewSpec.cs" />
+    <Compile Include="ViewsSection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\ResourceLocator.cs" />
     <Compile Include="StringExtensions.cs" />
