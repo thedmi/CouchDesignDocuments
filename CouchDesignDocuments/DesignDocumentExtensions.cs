@@ -5,7 +5,7 @@
 
     public static class DesignDocumentExtensions
     {
-        public static ViewIdentifier CreateQueryViewRequest<TDoc>(this TDoc designDocument, Expression<Func<TDoc, MapReduceSpec>> viewExpression) where TDoc : DesignDocument
+        public static ViewIdentifier GetViewIdentifier<TDoc>(this TDoc designDocument, Expression<Func<TDoc, MapReduceSpec>> viewExpression) where TDoc : IDesignDocument
         {
             var memberExpression = viewExpression.Body as MemberExpression;
             if (memberExpression == null)

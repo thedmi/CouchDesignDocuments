@@ -2,17 +2,13 @@
 {
     using TheDmi.CouchDesignDocuments;
 
-    public class ExampleDesignDocument : DesignDocument
+    public class ExampleDesignDocument : DesignDocument<ExampleDesignDocument.ExampleViews>
     {
         public override string Name { get { return "example"; } }
 
-        public ExampleViews Views { get {  return new ExampleViews(this);} }
-
         public class ExampleViews : DesignDocumentViews
         {
-            public ExampleViews(DesignDocument designDocument) : base(designDocument) { }
-
-            public MapReduceSpec ByDate { get { return View(); } }
+            public MapReduceSpec ByDate { get { return MapView(); } }
         }
     }
 }

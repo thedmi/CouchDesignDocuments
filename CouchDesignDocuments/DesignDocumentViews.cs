@@ -7,23 +7,28 @@ namespace TheDmi.CouchDesignDocuments
     using System.Reflection;
     using System.Runtime.CompilerServices;
 
+    using Newtonsoft.Json;
+
     public abstract class DesignDocumentViews
     {
-        private readonly Type _designDocumentType;
+        [JsonIgnore]
+        public Type ConcreteViewsType { get; internal set; }
 
-        protected DesignDocumentViews(DesignDocument designDocument)
-        {
-            _designDocumentType = designDocument.GetType();
-        }
-
-        protected MapReduceSpec View([CallerMemberName] string mapFunctionName = null)
+        protected MapReduceSpec MapView([CallerMemberName] string mapFunctionName = null)
         {
             return new MapReduceSpec(
-                new Lazy<string>(() => LoadMapFunction(mapFunctionName)),
-                new Lazy<string>(() => LoadReduceFunction(mapFunctionName)));
+                new Lazy<string>(() => LoadRequiredStringResource(mapFunctionName)),
+                new Lazy<string>(() => null));
         }
 
-        private string LoadMapFunction(string baseName)
+        protected MapReduceSpec MapReduceView([CallerMemberName] string mapFunctionName = null)
+        {
+            return new MapReduceSpec(
+                new Lazy<string>(() => LoadRequiredStringResource(mapFunctionName)),
+                new Lazy<string>(() => LoadRequiredStringResource(mapFunctionName + ".reduce")));
+        }
+
+        private string LoadRequiredStringResource(string baseName)
         {
             var jsName = baseName + ".js";
 
@@ -37,15 +42,10 @@ namespace TheDmi.CouchDesignDocuments
             return content;
         }
 
-        private string LoadReduceFunction(string baseName)
-        {
-            return LoadStringResource(baseName + "_reduce.js");
-        }
-
         private string LoadStringResource(string jsName)
         {
             var matchingResource = FindResource(jsName);
-            return matchingResource != null ? ReadResourceContent(_designDocumentType.Assembly, matchingResource) : null;
+            return matchingResource != null ? ReadResourceContent(ConcreteViewsType.Assembly, matchingResource) : null;
         }
 
         private string FindResource(string jsName)
@@ -57,8 +57,8 @@ namespace TheDmi.CouchDesignDocuments
         private IEnumerable<string> GetAllViewResourceNames()
         {
             var resourceNames =
-                _designDocumentType.Assembly.GetManifestResourceNames()
-                    .Where(n => n.StartsWith(_designDocumentType.Namespace));
+                ConcreteViewsType.Assembly.GetManifestResourceNames()
+                    .Where(n => n.StartsWith(ConcreteViewsType.Namespace));
 
             return resourceNames.Where(n => n.Contains("Views"));
         }
@@ -78,7 +78,7 @@ namespace TheDmi.CouchDesignDocuments
                 string.Format(
                     "The resource for the map function with name '{0}' could not be found in the assembly resources. "
                     + "Did you set the 'Build Action' property to 'Embedded Resource'? \n\nFound resources for {1}: {2}",
-                    jsName, _designDocumentType.Name, GetAllViewResourceNames().Aggregate("", (accu, s) => accu + "\n" + s));
+                    jsName, ConcreteViewsType.Name, GetAllViewResourceNames().Aggregate("", (accu, s) => accu + "\n" + s));
         }
     }
 }
