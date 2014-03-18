@@ -56,9 +56,14 @@
       <Name>CouchDesignDocuments</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Example\Views\SumQuantities.js" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Example\Views\ByDate.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Example\Views\SumQuantities.reduce.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

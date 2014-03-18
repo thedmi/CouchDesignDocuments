@@ -9,6 +9,8 @@
         public class ExampleViews : DesignDocumentViews
         {
             public MapReduceSpec ByDate { get { return MapView(); } }
+
+            public MapReduceSpec SumQuantities { get { return MapReduceView(); } }
         }
     }
 }
