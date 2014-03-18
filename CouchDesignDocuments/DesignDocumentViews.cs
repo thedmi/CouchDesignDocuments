@@ -6,6 +6,7 @@ namespace TheDmi.CouchDesignDocuments
     using System.Linq;
     using System.Reflection;
     using System.Runtime.CompilerServices;
+    using System.Text.RegularExpressions;
 
     using Newtonsoft.Json;
 
@@ -68,7 +69,7 @@ namespace TheDmi.CouchDesignDocuments
             using (var stream = assembly.GetManifestResourceStream(resourceName))
             using (var reader = new StreamReader(stream))
             {
-                return reader.ReadToEnd();
+                return Regex.Replace(reader.ReadToEnd(), @"\s+", " ");
             }
         }
 
