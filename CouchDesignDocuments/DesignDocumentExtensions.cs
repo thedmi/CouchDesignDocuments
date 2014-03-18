@@ -13,7 +13,7 @@
                 throw new ArgumentException("Supplied expression does not have a Body of type MemberExpression", "viewExpression");
             }
 
-            var viewName = memberExpression.Member.Name;
+            var viewName = memberExpression.Member.Name.DeCamelCase().ToLower();
             return new ViewIdentifier(designDocument.Name, char.ToLower(viewName[0]) + viewName.Substring(1));
         }
     }

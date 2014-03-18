@@ -15,7 +15,7 @@
 
             Assert.Equal("example", viewIdentifier.DesignDocumentName);
             Assert.Equal("_design/example", viewIdentifier.DesignDocumentId);
-            Assert.Equal("byDate", viewIdentifier.ViewId);
+            Assert.Equal("by_date", viewIdentifier.ViewId);
         }
     }
 }

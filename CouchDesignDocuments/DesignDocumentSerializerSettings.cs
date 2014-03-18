@@ -7,7 +7,15 @@
     {
         public DesignDocumentSerializerSettings()
         {
-            ContractResolver = new CamelCasePropertyNamesContractResolver();
+            ContractResolver = new UnderscorePropertyNamesContractResolver();
+        }
+
+        public class UnderscorePropertyNamesContractResolver : DefaultContractResolver
+        {
+            protected override string ResolvePropertyName(string propertyName)
+            {
+                return propertyName.DeCamelCase().ToLower();
+            }
         }
     }
 }
