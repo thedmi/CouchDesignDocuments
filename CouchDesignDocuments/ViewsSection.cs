@@ -3,27 +3,25 @@ namespace TheDmi.CouchDesignDocuments
     using System;
     using System.Runtime.CompilerServices;
 
-    using Newtonsoft.Json;
-
-    public abstract class ViewsSection : AbstractSection
+    public abstract class ViewsSection<TSelf> : IViewsSection
     {
-        protected ViewSpec MapView([CallerMemberName] string mapFunctionName = null)
+        protected static ViewSpec MapView([CallerMemberName] string mapFunctionName = null)
         {
             return new ViewSpec(
-                new Lazy<string>(() => ReadJsFromResources(mapFunctionName)),
+                new Lazy<string>(() => ReadJsFromResources(mapFunctionName, typeof(TSelf))),
                 new Lazy<string>(() => null));
         }
 
-        protected ViewSpec MapReduceView([CallerMemberName] string mapFunctionName = null)
+        protected static ViewSpec MapReduceView([CallerMemberName] string mapFunctionName = null)
         {
             return new ViewSpec(
-                new Lazy<string>(() => ReadJsFromResources(mapFunctionName)),
-                new Lazy<string>(() => ReadJsFromResources(mapFunctionName + ".reduce")));
+                new Lazy<string>(() => ReadJsFromResources(mapFunctionName, typeof(TSelf))),
+                new Lazy<string>(() => ReadJsFromResources(mapFunctionName + ".reduce", typeof(TSelf))));
         }
 
-        private string ReadJsFromResources(string baseName)
+        private static string ReadJsFromResources(string baseName, Type viewsType)
         {
-            return ReadJsFromResources(baseName, "Views");
+            return SectionJsReader.ReadJsFromResources(baseName, "Views", viewsType);
         }
     }
 }

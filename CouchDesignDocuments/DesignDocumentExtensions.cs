@@ -5,7 +5,7 @@
 
     public static class DesignDocumentExtensions
     {
-        public static ViewIdentifier GetViewIdentifier<TDoc>(this TDoc designDocument, Expression<Func<TDoc, ViewSpec>> viewExpression) where TDoc : IDesignDocument
+        public static ViewIdentifier GetViewIdentifier<TDoc>(this TDoc designDocument, Expression<Func<ViewSpec>> viewExpression) where TDoc : IDesignDocument
         {
             var memberExpression = viewExpression.Body as MemberExpression;
             if (memberExpression == null)

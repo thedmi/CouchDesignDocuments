@@ -1,7 +1,10 @@
 ﻿namespace TheDmi.CouchDesignDocuments.Serialization
 {
     using System;
+    using System.Collections.Generic;
+    using System.Dynamic;
     using System.Linq;
+    using System.Reflection;
 
     using Newtonsoft.Json;
 
@@ -14,21 +17,32 @@
             writer.WriteStartObject();
             WriteProperty(writer, "_id", doc.Id);
 
-            WriteSection<ViewsSection>(doc, "views", writer, serializer);
-            WriteSection<ShowsSection>(doc, "shows", writer, serializer);
+            WriteSection<IViewsSection>(doc, "views", writer, serializer);
+            WriteSection<IShowsSection>(doc, "shows", writer, serializer);
 
             writer.WriteEndObject();
         }
 
-        private static void WriteSection<TSection>(IDesignDocument doc, string sectionName, JsonWriter writer, JsonSerializer serializer) where TSection : AbstractSection
+        private static void WriteSection<TSectionInterface>(IDesignDocument doc, string sectionName, JsonWriter writer, JsonSerializer serializer)
         {
-            var viewsSectionType = doc.GetType().GetNestedTypes().SingleOrDefault(t => t.IsSubclassOf(typeof(TSection)));
-            if (viewsSectionType != null)
+            var sectionType = doc.GetType().GetNestedTypes().SingleOrDefault(t => t.ImplementsInterface(typeof(TSectionInterface)));
+            if (sectionType != null)
             {
-                var viewsSection = (TSection)Activator.CreateInstance(viewsSectionType);
-                viewsSection.ConcreteSectionType = viewsSectionType;
+                var sectionFunctions = sectionType.GetMembers(BindingFlags.Public | BindingFlags.Static);
+
+                var expando = new ExpandoObject() as IDictionary<string, object>;
+
+                foreach (var sectionFunction in sectionFunctions)
+                {
+                    var info = sectionFunction as PropertyInfo;
+                    if (info != null)
+                    {
+                        expando.Add(info.Name, info.GetValue(null));
+                    }
+                }
+
                 writer.WritePropertyName(sectionName);
-                serializer.Serialize(writer, viewsSection);
+                serializer.Serialize(writer, expando);
             }
         }
 
@@ -45,7 +59,7 @@
 
         public override bool CanConvert(Type objectType)
         {
-            return objectType.GetInterfaces().Any(i => i == typeof(IDesignDocument));
+            return objectType.ImplementsInterface(typeof(IDesignDocument));
         }
     }
 }

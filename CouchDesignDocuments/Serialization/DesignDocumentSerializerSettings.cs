@@ -29,7 +29,7 @@
                     contract.Converter = new FunctionSpecConverter();
                 }
 
-                if (type.GetInterfaces().Any(i => i == typeof(IDesignDocument)))
+                if (type.ImplementsInterface(typeof(IDesignDocument)))
                 {
                     contract.Converter = new DesignDocumentConverter();
                 }

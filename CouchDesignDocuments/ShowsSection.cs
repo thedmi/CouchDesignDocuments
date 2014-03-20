@@ -3,11 +3,14 @@
     using System;
     using System.Runtime.CompilerServices;
 
-    public abstract class ShowsSection : AbstractSection
+    public abstract class ShowsSection<TSelf> : IShowsSection
     {
-        protected FunctionSpec Show([CallerMemberName] string showFunctionName = null)
+        protected static FunctionSpec Show([CallerMemberName] string showFunctionName = null)
         {
-            return new FunctionSpec(new Lazy<string>(() => ReadJsFromResources(showFunctionName, "Shows")));
+            return
+                new FunctionSpec(
+                    new Lazy<string>(
+                        () => SectionJsReader.ReadJsFromResources(showFunctionName, "Shows", typeof(TSelf))));
         }
     }
 }
