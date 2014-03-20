@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IListsSection.cs" />
+    <Compile Include="IUpdatesSection.cs" />
     <Compile Include="ListsSection.cs" />
     <Compile Include="StandardSection.cs" />
     <Compile Include="DesignDocument.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="ShowsSection.cs" />
     <Compile Include="IDesignDocument.cs" />
     <Compile Include="FunctionSpec.cs" />
+    <Compile Include="UpdatesSection.cs" />
     <Compile Include="ViewSpec.cs" />
     <Compile Include="ViewsSection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

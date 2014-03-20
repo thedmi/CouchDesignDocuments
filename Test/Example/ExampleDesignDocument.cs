@@ -22,5 +22,10 @@
         {
             public static FunctionSpec MyList { get { return List(); } }
         }
+
+        public class Updates : UpdatesSection<Updates>
+        {
+            public static FunctionSpec MyUpdate { get { return Update(); } }
+        }
     }
 }
