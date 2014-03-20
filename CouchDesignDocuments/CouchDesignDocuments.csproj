@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="StandardSection.cs" />
     <Compile Include="DesignDocument.cs" />
     <Compile Include="IShowsSection.cs" />
     <Compile Include="IViewsSection.cs" />
