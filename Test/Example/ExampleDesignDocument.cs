@@ -2,7 +2,7 @@
 {
     using TheDmi.CouchDesignDocuments;
 
-    public class ExampleDesignDocument : DesignDocument<ExampleDesignDocument.ExampleViews, ExampleDesignDocument.ExampleShows>
+    public class ExampleDesignDocument : DesignDocument<ExampleDesignDocument.ExampleViews>
     {
         public override string Name { get { return "example"; } }
 

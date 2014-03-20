@@ -1,6 +1,7 @@
 ﻿namespace TheDmi.CouchDesignDocuments.Serialization
 {
     using System;
+    using System.Linq;
 
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
@@ -26,6 +27,11 @@
                 if (type == typeof(FunctionSpec))
                 {
                     contract.Converter = new FunctionSpecConverter();
+                }
+
+                if (type.GetInterfaces().Any(i => i == typeof(IDesignDocument)))
+                {
+                    contract.Converter = new DesignDocumentConverter();
                 }
 
                 return contract;

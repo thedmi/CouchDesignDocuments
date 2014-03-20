@@ -47,6 +47,7 @@
     <Compile Include="Serialization\DesignDocumentConvert.cs" />
     <Compile Include="DesignDocumentExtensions.cs" />
     <Compile Include="AbstractSection.cs" />
+    <Compile Include="Serialization\DesignDocumentConverter.cs" />
     <Compile Include="Serialization\DesignDocumentSerializerSettings.cs" />
     <Compile Include="Serialization\FunctionSpecConverter.cs" />
     <Compile Include="ShowsSection.cs" />
