@@ -17,5 +17,10 @@
         {
             public static FunctionSpec Index { get { return Show(); } }
         }
+
+        public class Lists : ListsSection<Lists>
+        {
+            public static FunctionSpec MyList { get { return List(); } }
+        }
     }
 }
