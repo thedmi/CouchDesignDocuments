@@ -5,6 +5,8 @@ namespace TheDmi.CouchDesignDocuments
 
     using Newtonsoft.Json;
 
+    using TheDmi.CouchDesignDocuments.Resources;
+
     public abstract class DesignDocument : IDesignDocument
     {
         [JsonProperty(PropertyName = "_id")]

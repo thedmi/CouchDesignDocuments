@@ -3,6 +3,8 @@ namespace TheDmi.CouchDesignDocuments
     using System;
     using System.Runtime.CompilerServices;
 
+    using TheDmi.CouchDesignDocuments.Resources;
+
     public abstract class ViewsSection<TSelf> : IViewsSection
     {
         protected static ViewSpec MapView([CallerMemberName] string mapFunctionName = null)

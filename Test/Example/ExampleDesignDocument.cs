@@ -17,17 +17,17 @@
 
         public class Shows : ShowsSection<Shows>
         {
-            public static FunctionSpec Index { get { return Show(); } }
+            public static FunctionSpec Index { get { return Function(); } }
         }
 
         public class Lists : ListsSection<Lists>
         {
-            public static FunctionSpec MyList { get { return List(); } }
+            public static FunctionSpec MyList { get { return Function(); } }
         }
 
         public class Updates : UpdatesSection<Updates>
         {
-            public static FunctionSpec MyUpdate { get { return Update(); } }
+            public static FunctionSpec MyUpdate { get { return Function(); } }
         }
 
         public class Filters : FiltersSection<Filters>

@@ -1,8 +1,6 @@
-namespace TheDmi.CouchDesignDocuments
+namespace TheDmi.CouchDesignDocuments.Resources
 {
     using System;
-
-    using TheDmi.CouchDesignDocuments.Resources;
 
     public static class SectionJsReader
     {

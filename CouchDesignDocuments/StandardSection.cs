@@ -2,6 +2,8 @@
 {
     using System;
 
+    using TheDmi.CouchDesignDocuments.Resources;
+
     public abstract class StandardSection<TSelf>
     {
         protected static FunctionSpec SectionPart(string functionName, string partNamespace)

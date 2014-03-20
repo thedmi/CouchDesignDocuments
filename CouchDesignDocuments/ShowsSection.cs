@@ -4,7 +4,7 @@
 
     public abstract class ShowsSection<TSelf> : StandardSection<TSelf>, IShowsSection
     {
-        protected static FunctionSpec Show([CallerMemberName] string showFunctionName = null)
+        protected static FunctionSpec Function([CallerMemberName] string showFunctionName = null)
         {
             return SectionPart(showFunctionName, "Shows");
         }

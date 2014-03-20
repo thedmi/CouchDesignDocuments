@@ -54,7 +54,7 @@
     <Compile Include="IViewsSection.cs" />
     <Compile Include="Serialization\DesignDocumentConvert.cs" />
     <Compile Include="DesignDocumentExtensions.cs" />
-    <Compile Include="SectionJsReader.cs" />
+    <Compile Include="Resources\SectionJsReader.cs" />
     <Compile Include="Serialization\DesignDocumentConverter.cs" />
     <Compile Include="Serialization\DesignDocumentSerializerSettings.cs" />
     <Compile Include="Serialization\FunctionSpecConverter.cs" />
