@@ -27,5 +27,10 @@
         {
             public static FunctionSpec MyUpdate { get { return Update(); } }
         }
+
+        public class Filters : FiltersSection<Filters>
+        {
+            public static FunctionSpec MyFilter { get { return Function(); } }
+        }
     }
 }

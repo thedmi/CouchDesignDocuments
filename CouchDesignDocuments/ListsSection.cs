@@ -2,11 +2,11 @@
 {
     using System.Runtime.CompilerServices;
 
-    public abstract class ListsSection<TSelf> : StandardSection, IListsSection
+    public abstract class ListsSection<TSelf> : StandardSection<TSelf>, IListsSection
     {
         protected static FunctionSpec List([CallerMemberName] string showFunctionName = null)
         {
-            return SectionPart(showFunctionName, "Lists", typeof(TSelf));
+            return SectionPart(showFunctionName, "Lists");
         }
     }
 }

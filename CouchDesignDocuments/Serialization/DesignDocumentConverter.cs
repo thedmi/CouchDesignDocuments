@@ -18,9 +18,11 @@
             WriteProperty(writer, "_id", doc.Id);
 
             WriteSection<IViewsSection>(doc, "views", writer, serializer);
+
             WriteSection<IShowsSection>(doc, "shows", writer, serializer);
             WriteSection<IListsSection>(doc, "lists", writer, serializer);
             WriteSection<IUpdatesSection>(doc, "updates", writer, serializer);
+            WriteSection<IFiltersSection>(doc, "filters", writer, serializer);
 
             writer.WriteEndObject();
         }
