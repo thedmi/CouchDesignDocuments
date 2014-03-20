@@ -24,6 +24,12 @@
             WriteSection<IUpdatesSection>(doc, "updates", writer, serializer);
             WriteSection<IFiltersSection>(doc, "filters", writer, serializer);
 
+            var validateProperty = doc.GetType().GetProperty("ValidateDocUpdate");
+            if (validateProperty != null)
+            {
+                WriteProperty(writer, "validate_doc_update", ((FunctionSpec)validateProperty.GetValue(doc)).Content);
+            }
+
             writer.WriteEndObject();
         }
 

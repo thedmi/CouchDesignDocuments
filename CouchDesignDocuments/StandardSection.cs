@@ -4,12 +4,12 @@
 
     public abstract class StandardSection<TSelf>
     {
-        protected static FunctionSpec SectionPart(string showFunctionName, string partNamespace)
+        protected static FunctionSpec SectionPart(string functionName, string partNamespace)
         {
             return
                 new FunctionSpec(
                     new Lazy<string>(
-                        () => SectionJsReader.ReadJsFromResources(showFunctionName, partNamespace, typeof(TSelf))));
+                        () => SectionJsReader.ReadJsFromResources(functionName, partNamespace, typeof(TSelf))));
         }
     }
 }

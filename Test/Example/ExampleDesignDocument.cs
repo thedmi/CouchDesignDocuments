@@ -1,5 +1,7 @@
 ﻿namespace TheDmi.CouchDesignDocuments.Test.Example
 {
+    using System;
+
     using TheDmi.CouchDesignDocuments;
 
     public class ExampleDesignDocument : DesignDocument
@@ -32,5 +34,7 @@
         {
             public static FunctionSpec MyFilter { get { return Function(); } }
         }
+
+        public FunctionSpec ValidateDocUpdate { get { return Function(); } } 
     }
 }
