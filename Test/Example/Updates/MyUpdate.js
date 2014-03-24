@@ -1,5 +1,5 @@
 ﻿(
 function (doc, req) {
-    return 'update!';
+    /* update function */
 }
 )

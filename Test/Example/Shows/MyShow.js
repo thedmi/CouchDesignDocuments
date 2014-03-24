@@ -1,5 +1,5 @@
 ﻿(
 function (doc, req) {
-    return 'show!';
+    /* show function */
 }
 )

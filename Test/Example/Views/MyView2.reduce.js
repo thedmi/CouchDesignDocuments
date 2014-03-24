@@ -1,5 +1,5 @@
 ﻿(
 function (key, values, rereduce) {
-    return sum(values);
+    /* my_view2 reduce function */
 }
 )

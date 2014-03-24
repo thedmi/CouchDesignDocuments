@@ -1,5 +1,5 @@
 ﻿(
 function (newDoc, oldDoc, userCtx, secObj) {
-    return 'validate!';
+    /* validate_doc_update function */
 }
 )

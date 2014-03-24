@@ -11,7 +11,7 @@
         {
             var example = new ExampleDesignDocument();
 
-            var viewIdentifier = example.GetViewIdentifier(() => ExampleDesignDocument.Views.ByDate);
+            var viewIdentifier = example.GetViewIdentifier(() => ExampleDesignDocument.Views.MyView1);
 
             Assert.Equal("example", viewIdentifier.DesignDocumentName);
             Assert.Equal("_design/example", viewIdentifier.DesignDocumentId);
