@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("CouchDesignDocuments")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A CouchDB design document generator that integrates into your .NET application.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyProduct("CouchDesignDocuments")]
 [assembly: AssemblyTrademark("")]
