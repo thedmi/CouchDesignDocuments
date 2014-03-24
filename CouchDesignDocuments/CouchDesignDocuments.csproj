@@ -72,6 +72,7 @@
     <Compile Include="ViewIdentifier.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="CouchDesignDocuments.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

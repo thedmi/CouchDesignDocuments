@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+    <projectUrl>https://github.com/thedmi/CouchDesignDocuments</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>First release that is able to generate all parts of design documents.</releaseNotes>
+    <copyright>Copyright 2014</copyright>
+    <tags>CouchDB DesignDocuments</tags>
+  </metadata>
+</package>
