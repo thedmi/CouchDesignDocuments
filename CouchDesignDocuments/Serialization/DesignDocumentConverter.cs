@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Dynamic;
     using System.Linq;
     using System.Reflection;
 
@@ -24,11 +23,7 @@
             WriteSection<IUpdatesSection>(doc, "updates", writer, serializer);
             WriteSection<IFiltersSection>(doc, "filters", writer, serializer);
 
-            var validateProperty = doc.GetType().GetProperty("ValidateDocUpdate");
-            if (validateProperty != null)
-            {
-                WriteProperty(writer, "validate_doc_update", ((FunctionSpec)validateProperty.GetValue(doc)).Content);
-            }
+            WriteValidateFunction(writer, doc);
 
             writer.WriteEndObject();
         }
@@ -38,22 +33,15 @@
             var sectionType = doc.GetType().GetNestedTypes().SingleOrDefault(t => t.ImplementsInterface(typeof(TSectionInterface)));
             if (sectionType != null)
             {
-                var sectionFunctions = sectionType.GetMembers(BindingFlags.Public | BindingFlags.Static);
-
-                var expando = new ExpandoObject() as IDictionary<string, object>;
-
-                foreach (var sectionFunction in sectionFunctions)
-                {
-                    var info = sectionFunction as PropertyInfo;
-                    if (info != null)
-                    {
-                        expando.Add(info.Name, info.GetValue(null));
-                    }
-                }
-
                 writer.WritePropertyName(sectionName);
-                serializer.Serialize(writer, expando);
+                serializer.Serialize(writer, ReflectSectionFunctions(sectionType));
             }
+        }
+
+        private static IDictionary<string, object> ReflectSectionFunctions(Type sectionType)
+        {
+            var properties = sectionType.GetMembers(BindingFlags.Public | BindingFlags.Static).OfType<PropertyInfo>();
+            return properties.ToDictionary(info => info.Name, info => info.GetValue(null));
         }
 
         private static void WriteProperty(JsonWriter writer, string name, string value)
@@ -62,8 +50,18 @@
             writer.WriteValue(value);
         }
 
+        private static void WriteValidateFunction(JsonWriter writer, IDesignDocument doc)
+        {
+            var validateProperty = doc.GetType().GetProperty("ValidateDocUpdate");
+            if (validateProperty != null)
+            {
+                WriteProperty(writer, "validate_doc_update", ((FunctionSpec)validateProperty.GetValue(doc)).Content);
+            }
+        }
+
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
+            // This converter does not support deserialization
             throw new NotImplementedException();
         }
 
@@ -71,5 +69,7 @@
         {
             return objectType.ImplementsInterface(typeof(IDesignDocument));
         }
+
+        public override bool CanRead { get { return false; } }
     }
 }
