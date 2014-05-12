@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/thedmi/CouchDesignDocuments</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>First release that is able to generate all parts of design documents.</releaseNotes>
+    <releaseNotes>Single line comments are now stripped from the design doc functions, as they did corrupt the resulting json design doc.</releaseNotes>
     <copyright>Copyright 2014</copyright>
     <tags>CouchDB DesignDocuments</tags>
   </metadata>
