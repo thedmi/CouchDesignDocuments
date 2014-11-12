@@ -1,7 +1,7 @@
 CouchDesignDocuments
 =====================
 
-This library provides a clean and structured way to specify CouchDB design documents within a Visual Studio solution. 
+This library provides a clean and structured way to specify CouchDB design documents within a Visual Studio solution. Grab the Nuget at http://www.nuget.org/packages/CouchDesignDocuments/ .
 
 
 No JavaScript Strings
@@ -23,20 +23,21 @@ For a full example with working code and the recommended directory structure, ta
 
 Here is a very simple design document, specified using CouchDesignDocuments:
 
+```csharp
 
-    using TheDmi.CouchDesignDocuments;
+using TheDmi.CouchDesignDocuments;
 
-    public class ExampleDesignDocument : DesignDocument
+public class ExampleDesignDocument : DesignDocument
+{
+    // A name of "example" leads to a document ID of "_design/example"
+    public override string Name { get { return "example"; } } 
+
+    // Views must reside in a nested class that inherits ViewsSection
+    public class Views : ViewsSection<Views>
     {
-        // A name of "example" leads to a document ID of "_design/example"
-        public override string Name { get { return "example"; } } 
-
-        // Views must reside in a nested class that inherits ViewsSection
-        public class Views : ViewsSection<Views>
-        {
-            // This view will load the map function from an embedded resource
-			// "MyView.js" in the folder "Views"
-            public static ViewSpec MyView { get { return MapView(); } }
-        }
+        // This view will load the map function from an embedded resource
+        // "MyView.js" in the folder "Views"
+        public static ViewSpec MyView { get { return MapView(); } }
     }
-
+}
+```
