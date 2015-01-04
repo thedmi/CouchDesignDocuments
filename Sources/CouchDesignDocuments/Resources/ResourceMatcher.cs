@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Reflection;
 
     public class ResourceMatcher
     {
@@ -29,7 +28,10 @@
 
         private static bool MeetsRequirements(string canditate, string name, IEnumerable<string> requiredNamespaceParts)
         {
-            return canditate.ToLower().EndsWith(name.ToLower()) && requiredNamespaceParts.All(canditate.Contains);
+            var nameMatches = canditate.ToLower().EndsWith(name.ToLower()) && canditate[canditate.Length - name.Length - 1] == '.';
+            var namespacePartsMatch = requiredNamespaceParts.All(canditate.Contains);
+
+            return nameMatches && namespacePartsMatch;
         }
 
         private static string ResourceNotFoundErrorMessage(string name, IReadOnlyList<string> candidates, string assemblyName)
