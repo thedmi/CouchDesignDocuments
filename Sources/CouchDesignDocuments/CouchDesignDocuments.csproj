@@ -51,6 +51,7 @@
     <Compile Include="IListsSection.cs" />
     <Compile Include="IUpdatesSection.cs" />
     <Compile Include="ListsSection.cs" />
+    <Compile Include="Resources\ResourceMatcher.cs" />
     <Compile Include="StandardSection.cs" />
     <Compile Include="DesignDocument.cs" />
     <Compile Include="IShowsSection.cs" />

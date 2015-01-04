@@ -6,7 +6,7 @@ namespace TheDmi.CouchDesignDocuments.Resources
     {
         public static string ReadJsFromResources(string baseName, string part, Type concreteSectionType)
         {
-            var resourceLocator = new ResourceLocator(concreteSectionType.Assembly);
+            var resourceLocator = new ResourceLocator(concreteSectionType.Assembly, new ResourceMatcher());
             var resourceName = resourceLocator.GetResourceFqn(baseName + ".js", concreteSectionType.Namespace, part);
 
             return new JavaScriptResourceReader().ReadJs(concreteSectionType.Assembly, resourceName);
