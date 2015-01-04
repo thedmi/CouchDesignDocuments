@@ -52,6 +52,7 @@
     <Compile Include="CouchDesignDocumentTest.cs" />
     <Compile Include="Example\ExampleDesignDocument.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResourceMatcherTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
