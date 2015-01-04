@@ -25,7 +25,7 @@ In order to query a view, the design document ID and the view name has to be kno
 Create the following directory structure in your VS project:
 
 ```
-DesignDocuments/ (or any other name you like)
+ExampleDesignDoc/ (or any other name you like)
     Views/
         ExampleView1.js
         ExampleView2.js
