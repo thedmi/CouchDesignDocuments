@@ -7,6 +7,6 @@
 using System.Reflection;
 
 [assembly: AssemblyCompany("Dani Michel")]
-[assembly: AssemblyCopyright("Copyright © 2014")]
-[assembly: AssemblyVersion("0.4.0")]
-[assembly: AssemblyInformationalVersion("0.4.0")]
+[assembly: AssemblyCopyright("Copyright © 2015")]
+[assembly: AssemblyVersion("1.0.0")]
+[assembly: AssemblyInformationalVersion("1.0.0")]

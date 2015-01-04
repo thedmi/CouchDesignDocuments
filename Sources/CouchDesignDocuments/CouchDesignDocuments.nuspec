@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/thedmi/CouchDesignDocuments</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Json library updated, error messages during view function resolution improved.</releaseNotes>
+    <releaseNotes>Stable release.</releaseNotes>
     <copyright>Copyright 2014</copyright>
     <tags>CouchDB DesignDocuments</tags>
   </metadata>
