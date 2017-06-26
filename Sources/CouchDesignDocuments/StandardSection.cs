@@ -1,6 +1,7 @@
 ﻿namespace TheDmi.CouchDesignDocuments
 {
     using System;
+    using System.Reflection;
 
     using TheDmi.CouchDesignDocuments.Resources;
 

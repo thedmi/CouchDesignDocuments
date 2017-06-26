@@ -30,7 +30,7 @@
 
         private static void WriteSection<TSectionInterface>(IDesignDocument doc, string sectionName, JsonWriter writer, JsonSerializer serializer)
         {
-            var sectionType = doc.GetType().GetNestedTypes().SingleOrDefault(t => t.ImplementsInterface(typeof(TSectionInterface)));
+            var sectionType = doc.GetType().GetTypeInfo().GetNestedTypes().SingleOrDefault(t => t.ImplementsInterface(typeof(TSectionInterface)));
             if (sectionType != null)
             {
                 writer.WritePropertyName(sectionName);
@@ -40,7 +40,7 @@
 
         private static IDictionary<string, object> ReflectSectionFunctions(Type sectionType)
         {
-            var properties = sectionType.GetMembers(BindingFlags.Public | BindingFlags.Static).OfType<PropertyInfo>();
+            var properties = sectionType.GetTypeInfo().GetMembers(BindingFlags.Public | BindingFlags.Static).OfType<PropertyInfo>();
             return properties.ToDictionary(info => info.Name, info => info.GetValue(null));
         }
 
@@ -52,7 +52,7 @@
 
         private static void WriteValidateFunction(JsonWriter writer, IDesignDocument doc)
         {
-            var validateProperty = doc.GetType().GetProperty("ValidateDocUpdate");
+            var validateProperty = doc.GetType().GetTypeInfo().GetProperty("ValidateDocUpdate");
             if (validateProperty != null)
             {
                 WriteProperty(writer, "validate_doc_update", ((FunctionSpec)validateProperty.GetValue(doc)).Content);
