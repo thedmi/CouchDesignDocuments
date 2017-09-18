@@ -8,9 +8,17 @@
     using TheDmi.CouchDesignDocuments.Test.Example;
 
     using Xunit;
+    using Xunit.Abstractions;
 
     public class CouchDesignDocumentTest
     {
+        private readonly ITestOutputHelper _output;
+
+        public CouchDesignDocumentTest(ITestOutputHelper output)
+        {
+            _output = output;
+        }
+
         [Fact]
         public void Example_document_contains_all_specified_members()
         {
@@ -18,7 +26,7 @@
 
             var json = DesignDocumentConvert.Serialize(example);
 
-            Debug.WriteLine(json);
+            _output.WriteLine(json);
 
             dynamic deserialized = JsonConvert.DeserializeObject(json);
 
