@@ -4,7 +4,7 @@
     <TargetFramework>netstandard1.5</TargetFramework>
     <RootNamespace>TheDmi.CouchDesignDocuments</RootNamespace>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>2.0.0</Version>
+    <Version>2.1.0</Version>
     <PackageId>CouchDesignDocuments</PackageId>
     <PackageLicenseUrl>http://opensource.org/licenses/MIT</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/thedmi/CouchDesignDocuments</PackageProjectUrl>
@@ -14,7 +14,7 @@
     <Product />
     <Description>CouchDB design document management for .NET-based projects.</Description>
     <PackageTags>couchdb design-documents</PackageTags>
-    <PackageReleaseNotes>Retargeting to .net standard 1.5</PackageReleaseNotes>
+    <PackageReleaseNotes>Support for Cloudant full text search indexes added</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
