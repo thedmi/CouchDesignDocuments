@@ -40,6 +40,7 @@
             Assert.Contains("list", (string)deserialized.lists.my_list);
             Assert.Contains("update", (string)deserialized.updates.my_update);
             Assert.Contains("filter", (string)deserialized.filters.my_filter);
+            Assert.Contains("index", (string)deserialized.indexes.my_index.index);
 
             Assert.Contains("validate_doc_update", (string)deserialized.validate_doc_update);
         }

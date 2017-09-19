@@ -23,6 +23,8 @@
             WriteSection<IUpdatesSection>(doc, "updates", writer, serializer);
             WriteSection<IFiltersSection>(doc, "filters", writer, serializer);
 
+            WriteSection<IIndexesSection>(doc, "indexes", writer, serializer);
+
             WriteValidateFunction(writer, doc);
 
             writer.WriteEndObject();

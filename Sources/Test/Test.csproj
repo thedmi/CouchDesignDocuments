@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Example\Filters\MyFilter.js" />
+    <EmbeddedResource Include="Example\Indexes\MyIndex.js" />
     <EmbeddedResource Include="Example\Lists\MyList.js" />
     <EmbeddedResource Include="Example\Shows\MyShow.js" />
     <EmbeddedResource Include="Example\Updates\MyUpdate.js" />
