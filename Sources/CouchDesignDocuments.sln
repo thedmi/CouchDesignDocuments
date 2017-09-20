@@ -3,11 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F8D2BB2F-8B1D-4479-8208-54AB654BC3BD}"
-	ProjectSection(SolutionItems) = preProject
-		PackNuget.ps1 = PackNuget.ps1
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CouchDesignDocuments", "CouchDesignDocuments\CouchDesignDocuments.csproj", "{7E0FDD0E-7901-4530-914F-73D89BAD670E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "Test\Test.csproj", "{7940D6E4-54C2-4CE2-8B97-CCF8CCC08164}"
