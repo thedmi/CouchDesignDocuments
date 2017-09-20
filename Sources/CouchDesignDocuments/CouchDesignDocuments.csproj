@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>TheDmi.CouchDesignDocuments</RootNamespace>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>2.1.0</Version>
+    <Version>3.0.0</Version>
     <PackageId>CouchDesignDocuments</PackageId>
     <PackageLicenseUrl>http://opensource.org/licenses/MIT</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/thedmi/CouchDesignDocuments</PackageProjectUrl>
@@ -14,7 +14,7 @@
     <Product />
     <Description>CouchDB design document management for .NET-based projects.</Description>
     <PackageTags>couchdb design-documents</PackageTags>
-    <PackageReleaseNotes>Support for Cloudant full text search indexes added</PackageReleaseNotes>
+    <PackageReleaseNotes>Library retargeted to .NET standard 2.0</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
