@@ -1,17 +1,17 @@
 ﻿namespace TheDmi.CouchDesignDocuments
 {
-    public class ViewIdentifier
+    public class IndexIdentifier
     {
-        public ViewIdentifier(string designDocumentName, string viewId)
+        public IndexIdentifier(string designDocumentName, string indexId)
         {
             DesignDocumentName = designDocumentName;
-            ViewId = viewId;
+            IndexId = indexId;
         }
 
         public string DesignDocumentId => "_design/" + DesignDocumentName;
 
         public string DesignDocumentName { get; }
 
-        public string ViewId { get; }
+        public string IndexId { get; }
     }
 }
