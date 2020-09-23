@@ -56,5 +56,64 @@
             Assert.Equal("_design/example", viewIdentifier.DesignDocumentId);
             Assert.Equal("my_view1", viewIdentifier.ViewId);
         }
+
+        [Fact]
+        public void AnalyzerNotSerializedIfNotProvided()
+        {
+            var example = new ExampleDesignDocument();
+
+            var json = DesignDocumentConvert.Serialize(example);
+
+            _output.WriteLine(json);
+
+            // Compare with the serialized value to ensure the analyzer property isn't serialized
+            // at all if none was provided.
+            // Testing that the `analyzer` attribute on the deserialized object is `null` (which
+            // is the returned value for undefined attributes) would be an improper test, as it
+            // would also pass in the case where the analyzer is simply serialized as `null`, which
+            // is not desired.
+            Assert.DoesNotContain("analyzer", json);
+        }
+
+        [Fact]
+        public void GenericAnalyzersSupported()
+        {
+            var example = new ExampleDesignDocumentGenericAnalyzer();
+
+            var json = DesignDocumentConvert.Serialize(example);
+
+            _output.WriteLine(json);
+
+            dynamic deserialized = JsonConvert.DeserializeObject(json);
+
+            Assert.Equal("simple", (string)deserialized.indexes.my_index.analyzer);
+        }
+
+        [Fact]
+        public void PerfieldAnalyzerSupported()
+        {
+            var example = new ExampleDesignDocumentPerfieldAnalyzer();
+
+            var json = DesignDocumentConvert.Serialize(example);
+
+            _output.WriteLine(json);
+
+            dynamic deserialized = JsonConvert.DeserializeObject(json);
+
+            var analyzer = deserialized.indexes.my_index.analyzer;
+            var analyzerFields = analyzer["fields"];
+
+            Assert.Equal("perfield", (string)analyzer["name"]);
+            Assert.Equal("keyword", (string)analyzer["default"]);
+
+            Assert.Equal("classic", (string)analyzerFields["CapitalizedCamelCaseField"]);
+            Assert.Equal("email", (string)analyzerFields["camelCaseField"]);
+            Assert.Equal("keyword", (string)analyzerFields["Capitalized_Snake_Case"]);
+            Assert.Equal("simple", (string)analyzerFields["snake_case"]);
+            Assert.Equal("standard", (string)analyzerFields["Capitalized-Kebab-Case"]);
+            Assert.Equal("whitespace", (string)analyzerFields["kebab-case"]);
+            Assert.Equal("standard", (string)analyzerFields["CompLetELY_ranDoM-CASE"]);
+            Assert.Equal("standard", (string)analyzerFields["spaced Word"]);
+        }
     }
 }
